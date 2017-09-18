@@ -11827,7 +11827,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># 载入波士顿房屋的数据集</span>
@@ -11837,6 +11837,7 @@ div#notebook {
     
 <span class="c1"># 完成</span>
 <span class="k">print</span> <span class="s2">&quot;Boston housing dataset has {} data points with {} variables each.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1">#print data.dtypes</span>
 </pre></div>
 
 </div>
@@ -11854,6 +11855,11 @@ div#notebook {
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Boston housing dataset has 489 data points with 4 variables each.
+RM         float64
+LSTAT      float64
+PTRATIO    float64
+MEDV       float64
+dtype: object
 </pre>
 </div>
 </div>
@@ -11894,7 +11900,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#TODO 1</span>
@@ -11921,6 +11927,7 @@ div#notebook {
 <span class="k">print</span> <span class="s2">&quot;Mean price: ${:,.2f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mean_price</span><span class="p">)</span>
 <span class="k">print</span> <span class="s2">&quot;Median price ${:,.2f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">median_price</span><span class="p">)</span>
 <span class="k">print</span> <span class="s2">&quot;Standard deviation of prices: ${:,.2f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">std_price</span><span class="p">)</span>
+<span class="k">print</span> <span class="s2">&quot;House with median price:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;MEDV&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">median_price</span><span class="p">]</span>
 </pre></div>
 
 </div>
@@ -11944,6 +11951,10 @@ Maximum price: $1,024,800.00
 Mean price: $454,342.94
 Median price $438,900.00
 Standard deviation of prices: $165,171.13
+House with median price:
+        RM  LSTAT  PTRATIO      MEDV
+69   5.885   8.79     18.9  438900.0
+247  5.876   9.25     16.4  438900.0
 </pre>
 </div>
 </div>
@@ -11998,7 +12009,7 @@ Standard deviation of prices: $165,171.13
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO 2</span>
@@ -12006,29 +12017,10 @@ Standard deviation of prices: $165,171.13
 <span class="c1"># 提示： 导入train_test_split</span>
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 
-<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">prices</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">prices</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>/home/alex/miniconda3/envs/mlnd/lib/python2.7/site-packages/sklearn/model_selection/_split.py:2010: FutureWarning: From version 0.21, test_size will always complement train_size unless both are specified.
-  FutureWarning)
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -12084,7 +12076,7 @@ Standard deviation of prices: $165,171.13
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO 3</span>
@@ -13863,7 +13855,7 @@ iASKgk9ERAJFwSciIoGi4BMRkUD5/zHJMapKIog9AAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="&#38382;&#39064;-8---&#22238;&#31572;&#65306;">&#38382;&#39064; 8 - &#22238;&#31572;&#65306;<a class="anchor-link" href="#&#38382;&#39064;-8---&#22238;&#31572;&#65306;">&#194;&#182;</a></h3><ul>
-<li>K折交叉验证法指的是平均的将数据分成K份，进行K次训练， 每次训练从K份数据里取一个不同的做验证集， 其余的数据做训练集， 最后将K次的结果做平均， 得到最后的结果</li>
+<li>K折交叉验证法指的是平均的将训练数据分成K份，进行K次训练， 每次训练从K份数据里取一个不同的做验证集， 其余的数据做训练集， 最后将K次的结果做平均， 得到最后的结果。 这样做， 所有的训练数据都能够被用来做训练， 同时所有的训练数据也被用来做了验证。 另外， K折交叉验证也能把数据分散开， 在K数目选择恰当的时候， 避免数据结构本身的不均匀导致训练结果的偏差。</li>
 <li>GridSearchCV通过计算验证集的结果给出最佳参数组合。</li>
 <li>cv_results_包含了grid search搜索过的参数组合的信息， 以及每一个参数组合对应的结果以及其他相关信息</li>
 <li>如果不使用交叉验证， 就无法分辨出出现方差增大的参数组合。 使用交叉验证， 就可以用验证集的预测结果来作为标准， 最佳参数组合对应验证集结果最高的组合。</li>
@@ -13893,7 +13885,7 @@ iASKgk9ERAJFwSciIoGi4BMRkUD5/zHJMapKIog9AAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO 4</span>
@@ -13907,7 +13899,7 @@ iASKgk9ERAJFwSciIoGi4BMRkUD5/zHJMapKIog9AAAAAElFTkSuQmCC
 <span class="k">def</span> <span class="nf">fit_model</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; 基于输入数据 [X,y]，利于网格搜索找到最优的决策树模型&quot;&quot;&quot;</span>
     
-    <span class="n">cross_validator</span> <span class="o">=</span> <span class="n">KFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">cross_validator</span> <span class="o">=</span> <span class="n">KFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
     
     <span class="n">regressor</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">()</span>
 
@@ -13988,7 +13980,7 @@ iASKgk9ERAJFwSciIoGi4BMRkUD5/zHJMapKIog9AAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># 基于训练数据，获得最优模型</span>
@@ -14082,7 +14074,7 @@ iASKgk9ERAJFwSciIoGi4BMRkUD5/zHJMapKIog9AAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[44]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># 生成三个客户的数据</span>
@@ -14094,6 +14086,11 @@ iASKgk9ERAJFwSciIoGi4BMRkUD5/zHJMapKIog9AAAAAElFTkSuQmCC
 <span class="n">predicted_price</span> <span class="o">=</span> <span class="n">optimal_reg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">client_data</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">price</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">predicted_price</span><span class="p">):</span>
     <span class="k">print</span> <span class="s2">&quot;Predicted selling price for Client {}&#39;s home: ${:,.2f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">price</span><span class="p">)</span>
+    <span class="k">print</span> <span class="s2">&quot;Close House:&quot;</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;MEDV&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="p">(</span><span class="n">price</span> <span class="o">-</span> <span class="mi">2000</span><span class="p">)]</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="n">tmp</span><span class="p">[</span><span class="s1">&#39;MEDV&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">price</span> <span class="o">+</span> <span class="mi">2000</span><span class="p">)]</span>
+    <span class="k">print</span> <span class="n">tmp</span>
+    <span class="k">print</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span>
 </pre></div>
 
 </div>
@@ -14110,9 +14107,33 @@ iASKgk9ERAJFwSciIoGi4BMRkUD5/zHJMapKIog9AAAAAElFTkSuQmCC
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Predicted selling price for Client 1&#39;s home: $409,500.00
-Predicted selling price for Client 2&#39;s home: $224,656.25
-Predicted selling price for Client 3&#39;s home: $854,700.00
+<pre>Predicted selling price for Client 1&#39;s home: $411,931.58
+Close House:
+        RM  LSTAT  PTRATIO      MEDV
+21   5.965  13.83     21.0  411600.0
+50   5.963  13.45     16.8  413700.0
+59   5.927   9.22     19.7  411600.0
+131  6.326  12.26     21.2  411600.0
+151  5.404  13.28     14.7  411600.0
+454  6.229  12.87     20.2  411600.0
+479  5.390  21.14     19.2  413700.0
+
+
+
+Predicted selling price for Client 2&#39;s home: $235,620.00
+Close House:
+        RM  LSTAT  PTRATIO      MEDV
+365  5.536   23.6     20.2  237300.0
+
+
+
+Predicted selling price for Client 3&#39;s home: $922,740.00
+Close House:
+        RM  LSTAT  PTRATIO      MEDV
+248  7.454   3.11     15.9  924000.0
+
+
+
 </pre>
 </div>
 </div>
@@ -14125,7 +14146,7 @@ Predicted selling price for Client 3&#39;s home: $854,700.00
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="&#38382;&#39064;-10---&#22238;&#31572;&#65306;">&#38382;&#39064; 10 - &#22238;&#31572;&#65306;<a class="anchor-link" href="#&#38382;&#39064;-10---&#22238;&#31572;&#65306;">&#194;&#182;</a></h3><p>我会建议三个客户的房价分别为$409,500， $224,656 和 $854,700。 仅从面积看， 假设单间房屋面积一样的情况下， 三个客户的房价应该为5:4:8的关系， 考虑社区贫困指数和邻近学校学生-老师比例来看， 以客户1的房价为基准的话， 客户2的房价要比客户1的房价的4/5低， 客户3的房价要比客户1的房价的8/5高， 计算的结果反映了这样的趋势。</p>
+<h3 id="&#38382;&#39064;-10---&#22238;&#31572;&#65306;">&#38382;&#39064; 10 - &#22238;&#31572;&#65306;<a class="anchor-link" href="#&#38382;&#39064;-10---&#22238;&#31572;&#65306;">&#194;&#182;</a></h3><p>我会建议三个客户的房价分别为\$411,930， \$235,620 和 \$922,740。 从统计数据中， 我取出了一些和估算价格相近的房屋信息。 从相近的房屋信息对比来看， 两者之间的数据基本相当， 相对比较符合预期。 从分析数据部分的结果来看， 最低房价\$105,000.00，最高房价为\$1,024,800.00， 平均房价为\$454,342.94， 房价中位数为\$438,900.00， 预测值均落在合理范围之内。</p>
 
 </div>
 </div>
@@ -14141,7 +14162,7 @@ Predicted selling price for Client 3&#39;s home: $854,700.00
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#TODO 5</span>
@@ -14170,7 +14191,7 @@ Predicted selling price for Client 3&#39;s home: $854,700.00
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Optimal model has R^2 score 0.72 on test data
+<pre>Optimal model has R^2 score 0.85 on test data
 </pre>
 </div>
 </div>
@@ -14192,7 +14213,7 @@ Predicted selling price for Client 3&#39;s home: $854,700.00
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="&#38382;&#39064;11---&#22238;&#31572;">&#38382;&#39064;11 - &#22238;&#31572;<a class="anchor-link" href="#&#38382;&#39064;11---&#22238;&#31572;">&#194;&#182;</a></h3><p>从结果来看， 模型在验证集上的准确度尚可， 偏向于1但不是特别高。</p>
+<h3 id="&#38382;&#39064;11---&#22238;&#31572;">&#38382;&#39064;11 - &#22238;&#31572;<a class="anchor-link" href="#&#38382;&#39064;11---&#22238;&#31572;">&#194;&#182;</a></h3><p>从结果来看， 模型在验证集上的决定系数R<sup>2</sup>为0.85， 偏向于1， 比较理想。</p>
 
 </div>
 </div>
@@ -14210,7 +14231,7 @@ Predicted selling price for Client 3&#39;s home: $854,700.00
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[45]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># 请先注释掉 fit_model 函数里的所有 print 语句</span>
@@ -14231,18 +14252,18 @@ Predicted selling price for Client 3&#39;s home: $854,700.00
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Trial 1: $411,000.00
+<pre>Trial 1: $391,183.33
 Trial 2: $411,417.39
 Trial 3: $415,800.00
 Trial 4: $420,622.22
-Trial 5: $423,300.00
+Trial 5: $418,377.27
 Trial 6: $411,931.58
 Trial 7: $399,663.16
 Trial 8: $407,232.00
 Trial 9: $402,531.82
 Trial 10: $413,700.00
 
-Range in prices: $23,636.84
+Range in prices: $29,438.89
 </pre>
 </div>
 </div>
@@ -14255,7 +14276,7 @@ Range in prices: $23,636.84
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="&#38382;&#39064;-12---&#22238;&#31572;&#65306;">&#38382;&#39064; 12 - &#22238;&#31572;&#65306;<a class="anchor-link" href="#&#38382;&#39064;-12---&#22238;&#31572;&#65306;">&#194;&#182;</a></h3><p>从结果看， 不同的训练集和测试集每次之间最大相差为结果的5%， 整体看还是比较一致的， 健壮性尚可。</p>
+<h3 id="&#38382;&#39064;-12---&#22238;&#31572;&#65306;">&#38382;&#39064; 12 - &#22238;&#31572;&#65306;<a class="anchor-link" href="#&#38382;&#39064;-12---&#22238;&#31572;&#65306;">&#194;&#182;</a></h3><p>从结果看， 不同的训练集和测试集每次之间最大相差为结果的7.5%， 整体看还是比较一致的， 健壮性尚可。</p>
 
 </div>
 </div>
